@@ -1,3 +1,4 @@
+//This is Dan's first comment.
 package edu.byui.cs246.scandroid;
 
 import android.os.Bundle;
