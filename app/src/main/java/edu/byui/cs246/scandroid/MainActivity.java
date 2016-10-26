@@ -1,5 +1,3 @@
-//This is Dan's first lame comment.
-//This is Brooks' awesome comment.
 //This is Dan's first awesome comment.
 //This is Brooks' super awesome comment.
 package edu.byui.cs246.scandroid;
