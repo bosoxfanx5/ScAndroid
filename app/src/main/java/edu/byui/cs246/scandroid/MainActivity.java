@@ -1,4 +1,5 @@
-//This is Dan's first really really cool comment.
+//This is Dan's first lame comment.
+//This is Brooks' awesome comment.
 package edu.byui.cs246.scandroid;
 
 import android.os.Bundle;
