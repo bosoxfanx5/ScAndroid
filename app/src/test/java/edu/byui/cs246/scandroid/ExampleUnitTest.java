@@ -15,3 +15,26 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 }
+
+
+/*
+Message
+isValidMessage()
+
+Options & Options Observer
+isValidOption(optionName, value)
+validateOptions();
+
+Scan
+isValidSymbology();
+
+Scanner & Scanner Observer
+didScan();
+
+Screen
+
+Sender & XMLRPC Sender
+checkDestination();
+
+Transformer
+*/
