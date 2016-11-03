@@ -5,4 +5,8 @@ package edu.byui.cs246.scandroid;
  */
 
 public class Scan {
+
+    String symbology;
+
+    public void Scan() {}
 }

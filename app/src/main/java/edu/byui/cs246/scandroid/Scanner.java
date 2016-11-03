@@ -7,4 +7,11 @@ import java.util.Observable;
  */
 
 public class Scanner extends Observable {
+
+    public void Scanner() {}
+
+    public Scan scan() {
+        return new Scan();
+
+    }
 }
