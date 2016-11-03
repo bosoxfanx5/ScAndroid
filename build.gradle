@@ -6,11 +6,20 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
-
+//        androidTestCompile 'com.android.support.test:runner:0.4'                     // Set this dependency to use JUnit 4 rules
+//        androidTestCompile 'com.android.support.test:rules:0.4'                      // Set this dependency to build and run Espresso tests
+//        androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'   // Set this dependency to build and run UI Automator tests
+//        androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
+//android {
+//    defaultConfig {
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//    }
+//}
 
 allprojects {
     repositories {
