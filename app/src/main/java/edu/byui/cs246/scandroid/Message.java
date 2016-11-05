@@ -7,6 +7,8 @@ package edu.byui.cs246.scandroid;
 public class Message {
 
     String message;
+    Scan scan;
+    Scan transofrmer;
 
     public String getMessage(){
         return message;

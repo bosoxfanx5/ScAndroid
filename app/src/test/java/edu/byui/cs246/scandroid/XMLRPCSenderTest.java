@@ -7,7 +7,6 @@ import org.junit.Test;
  */
 public class XMLRPCSenderTest {
 
-
     @Test
     public void update() throws Exception {
 

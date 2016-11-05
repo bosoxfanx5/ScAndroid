@@ -8,8 +8,14 @@ import java.util.Observer;
  */
 
 public class Options extends Observable implements Observer {
+    String serverIP;
+    Integer port;
+    //observers managed by observable superclass
+
     @Override
     public void update(Observable o, Object arg) {
 
     }
+
+    //public generateXMLRPCSender() {} //???
 }

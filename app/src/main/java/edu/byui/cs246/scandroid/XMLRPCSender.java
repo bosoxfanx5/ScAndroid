@@ -13,6 +13,8 @@ import java.util.Observer;
 
 public class XMLRPCSender implements Observer {
 
+    ScannerObserver so;
+
     public InetAddress serverIP;
 
     public int port = 8000;
@@ -32,4 +34,6 @@ public class XMLRPCSender implements Observer {
             return false;
         }
     }
+
+    public boolean send() { return false;}  //fail because we can't send things yet
 }

@@ -8,6 +8,10 @@ import java.util.Observer;
  */
 
 public class ScannerObserver implements Observer {
+
+    Scan scan;         //this is what we had in the UML, but...
+    //Scanner scanner; //not sure if we should be using scan or scanner here.
+
     @Override
     public void update(Observable o, Object arg) {
 

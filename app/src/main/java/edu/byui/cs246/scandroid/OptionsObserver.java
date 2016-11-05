@@ -8,6 +8,8 @@ import java.util.Observer;
  */
 
 public class OptionsObserver implements Observer {
+    Options options;
+
     @Override
     public void update(Observable o, Object arg) {
 
