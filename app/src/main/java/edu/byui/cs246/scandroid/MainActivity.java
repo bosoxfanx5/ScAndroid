@@ -4,6 +4,7 @@
 //This is Dan's second awesome comment.
 package edu.byui.cs246.scandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //wire up button
-        Button btn = (Button) findViewById(R.id.button);
+        Button btn = (Button) findViewById(R.id.listButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         Barcode thisCode = barcodes.valueAt(0);
         TextView txtView = (TextView) findViewById(R.id.txtContent);
         txtView.setText(thisCode.rawValue);
+    }
+
+    public void activateSettings(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
 //    @Override

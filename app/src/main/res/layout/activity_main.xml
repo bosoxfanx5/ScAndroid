@@ -53,13 +53,15 @@
             android:layout_gravity="bottom|start"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@android:drawable/ic_dialog_info"
-            app:backgroundTint="?attr/actionMenuTextColor" />
+            app:backgroundTint="?attr/actionMenuTextColor"
+            android:onClick="activateSettings(MainActivity)"
+            />
 
         <Button
             android:text="0"
             android:layout_width="80px"
             android:layout_height="80px"
-            android:id="@+id/button3"
+            android:id="@+id/allButton"
             android:layout_gravity="center|start"
             android:background="@android:drawable/editbox_dropdown_light_frame"
             style="@style/Widget.AppCompat.Button" />
@@ -68,7 +70,7 @@
             android:text="0"
             android:layout_width="80px"
             android:layout_height="80px"
-            android:id="@+id/button2"
+            android:id="@+id/listButton"
             android:layout_gravity="center|start"
             android:background="@android:drawable/editbox_dropdown_light_frame"
             style="@style/Widget.AppCompat.Button" />
