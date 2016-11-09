@@ -8,47 +8,81 @@
     tools:context="edu.byui.cs246.scandroid.MainActivity">
 
     <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay">-->
 
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
     <!--</android.support.design.widget.AppBarLayout>-->
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="193dp"
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtContent"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Process"
-            android:id="@+id/button"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imgview"/>
+            android:id="@+id/imgview" />
+
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_gravity="bottom|start"
+        android:layout_weight="1.11">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_dialog_info"
+            app:backgroundTint="?attr/actionMenuTextColor" />
+
+        <Button
+            android:text="0"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:id="@+id/button3"
+            android:layout_gravity="center|start"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            style="@style/Widget.AppCompat.Button" />
+
+        <Button
+            android:text="0"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:id="@+id/button2"
+            android:layout_gravity="center|start"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            style="@style/Widget.AppCompat.Button" />
+
+        <Button
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:text="0"
+            android:id="@+id/singleButton"
+            android:layout_gravity="center|start"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            style="@style/Widget.AppCompat.Button" />
+
+
+    </GridLayout>
 
 </android.support.design.widget.CoordinatorLayout>
