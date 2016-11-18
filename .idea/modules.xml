@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ScAndroid.iml" filepath="$PROJECT_DIR$/ScAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aXMLRPC/android-no-reg/build.gradle/aXMLRPC.gradle.iml" filepath="$PROJECT_DIR$/aXMLRPC/android-no-reg/build.gradle/aXMLRPC.gradle.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
