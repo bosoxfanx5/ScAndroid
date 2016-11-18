@@ -18,7 +18,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import serializer.SerializerHandler;
+//import serializer.SerializerHandler;
 
 /**
  * The ResponseParser parses the response of an XMLRPC server to an object.
@@ -115,8 +115,8 @@ class ResponseParser {
 
 		Element childElement = de.timroes.axmlrpc.XMLUtil.getOnlyChildElement(element.getChildNodes());
 
-		return SerializerHandler.getDefault().deserialize(childElement);
-
+		//return SerializerHandler.getDefault().deserialize(childElement);
+		return null;
 	}
 
 }
