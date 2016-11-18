@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':aXMLRPC.gradle'
+project(':aXMLRPC.gradle').projectDir = new File('aXMLRPC/android-no-reg/build.gradle')
