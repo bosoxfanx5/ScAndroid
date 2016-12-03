@@ -41,7 +41,6 @@ import com.google.android.gms.samples.vision.face.multitracker.ui.camera.Graphic
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.MultiProcessor;
-import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
@@ -143,7 +142,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
-        BarcodeTrackerFactory barcodeFactory = runOnUiThread(new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
+        BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
                 Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);

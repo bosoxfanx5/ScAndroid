@@ -18,6 +18,7 @@ package com.google.android.gms.samples.vision.face.multitracker;
 import com.google.android.gms.samples.vision.face.multitracker.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Tracker;
+import com.google.android.gms.vision.barcode.Barcode;
 
 /**
  * Generic tracker which is used for tracking either a face or a barcode (and can really be used for
@@ -28,10 +29,16 @@ import com.google.android.gms.vision.Tracker;
 class GraphicTracker<T> extends Tracker<T> {
     private GraphicOverlay mOverlay;
     private TrackedGraphic<T> mGraphic;
+    private Callback mCallback;
 
-    GraphicTracker(GraphicOverlay overlay, TrackedGraphic<T> graphic) {
+    GraphicTracker(GraphicOverlay overlay, TrackedGraphic<T> graphic, Callback callback) {
         mOverlay = overlay;
         mGraphic = graphic;
+        mCallback = callback;
+    }
+
+    public interface Callback {
+        void onFound(String barcodeValue);
     }
 
     /**
@@ -47,6 +54,7 @@ class GraphicTracker<T> extends Tracker<T> {
      */
     @Override
     public void onUpdate(Detector.Detections<T> detectionResults, T item) {
+        mCallback.onFound(((Barcode) item).rawValue);
         mOverlay.add(mGraphic);
         mGraphic.updateItem(item);
 
