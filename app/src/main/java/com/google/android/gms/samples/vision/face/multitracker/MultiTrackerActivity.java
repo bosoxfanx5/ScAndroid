@@ -31,6 +31,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -40,6 +41,7 @@ import com.google.android.gms.samples.vision.face.multitracker.ui.camera.Graphic
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.MultiProcessor;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
@@ -59,6 +61,8 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private CameraSource mCameraSource = null;
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
+    private String barcodeValue;
+
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -139,7 +143,18 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
-        BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay);
+        BarcodeTrackerFactory barcodeFactory = runOnUiThread(new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
+            @Override
+            public void onFound(String barcodeValue) {
+                Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
+//                this.barcodeValue = barcodeValue;
+                TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
+                bcTV.setText(barcodeValue);
+
+            }
+        });
+//        MultiProcessor<Barcode> barcodeMultiProcessor = new MultiProcessor.Builder<>(barcodeFactory).build();
+//        barcodeDetector.setProcessor(barcodeMultiProcessor);
         barcodeDetector.setProcessor(
                 new MultiProcessor.Builder<>(barcodeFactory).build());
 
