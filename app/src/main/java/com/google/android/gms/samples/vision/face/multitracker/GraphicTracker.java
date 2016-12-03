@@ -18,7 +18,6 @@ package com.google.android.gms.samples.vision.face.multitracker;
 import com.google.android.gms.samples.vision.face.multitracker.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Tracker;
-import android.util.Log;
 
 /**
  * Generic tracker which is used for tracking either a face or a barcode (and can really be used for
@@ -50,7 +49,7 @@ class GraphicTracker<T> extends Tracker<T> {
     public void onUpdate(Detector.Detections<T> detectionResults, T item) {
         mOverlay.add(mGraphic);
         mGraphic.updateItem(item);
-        Log.i("It Scanned.");
+
     }
 
     /**

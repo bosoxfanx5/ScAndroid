@@ -19,6 +19,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.google.android.gms.samples.vision.face.multitracker.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.MultiProcessor;
@@ -82,6 +83,7 @@ class BarcodeGraphic extends TrackedGraphic<Barcode> {
     void updateItem(Barcode barcode) {
         mBarcode = barcode;
         postInvalidate();
+        Log.i("message", "Scan Value" + barcode.rawValue);
     }
 
     /**
