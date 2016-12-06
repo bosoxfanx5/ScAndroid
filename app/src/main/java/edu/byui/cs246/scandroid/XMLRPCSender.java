@@ -1,5 +1,7 @@
 package edu.byui.cs246.scandroid;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -56,6 +58,7 @@ public class XMLRPCSender implements Observer {
         } catch (Exception ex) {
 
     }
+        Log.i("Info: ", "Scanning");
 
         return false;
 
