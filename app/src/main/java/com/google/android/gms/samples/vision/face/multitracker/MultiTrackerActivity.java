@@ -152,15 +152,15 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
+                Scan scan = new Scan(barcodeValue);
+                scanner.insertScan(scan);
                 try {
                     Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
 //                this.barcodeValue = barcodeValue;
                     TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
                     bcTV.setText(barcodeValue + "\n" + bcTV.getText());
-                    Scan scan = new Scan(barcodeValue);
-                    scanner.insertScan(scan);
                 } catch (Exception ex) {
-                    Log.e(ex.toString(), "Expected error: ");
+                    Log.e(ex.getMessage(), "Expected error: ");
                 }
 
             }

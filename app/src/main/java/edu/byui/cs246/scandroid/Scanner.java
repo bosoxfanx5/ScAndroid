@@ -20,7 +20,7 @@ public class Scanner extends Observable {
     public void Scanner() {}
 
     public Scan scan() { //produces a scan object - scan is a verb here
-        if (scans.size() > 1)
+        if (!scans.isEmpty())
             return scans.get(0).get(0);
         else {
             return null;
@@ -36,7 +36,7 @@ public class Scanner extends Observable {
     public void insertScan(Scan scan) {
         ArrayList<Scan> temp = new ArrayList();
         temp.add(scan);
-        if (scans.size() < 1) {
+        if (scans.isEmpty()) {
             scans.add(0, temp);
         }
         else {
