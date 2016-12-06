@@ -43,10 +43,12 @@ import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import edu.byui.cs246.scandroid.*;
-
 import java.io.IOException;
-import java.util.Observable;
+import java.net.MalformedURLException;
+
+import edu.byui.cs246.scandroid.Scan;
+import edu.byui.cs246.scandroid.Scanner;
+import edu.byui.cs246.scandroid.XMLRPCSender;
 
 /**
  * Activity for the multi-tracker app.  This app detects faces and barcodes with the rear facing
@@ -67,6 +69,9 @@ public final class MultiTrackerActivity extends AppCompatActivity {
 
     Scanner scanner = new Scanner();
     XMLRPCSender sender = new XMLRPCSender();
+
+    public MultiTrackerActivity() throws MalformedURLException {
+    }
 
     /**
      * Initializes the UI and creates the detector pipeline.

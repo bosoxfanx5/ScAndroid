@@ -2,9 +2,8 @@ package edu.byui.cs246.scandroid;
 
 import android.util.Log;
 
-import java.lang.reflect.Array;
-import java.util.Observable;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Created by admin on 11/2/16.
@@ -48,7 +47,7 @@ public class Scanner extends Observable {
         }
 
         Log.i("Info: ", "Inserting scan.");
-
+        setChanged();
         notifyObservers();
     }
 

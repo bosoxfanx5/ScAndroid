@@ -5,11 +5,11 @@ import android.util.Log;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.Exchanger;
 
 import de.timroes.axmlrpc.XMLRPCClient;
 
@@ -25,11 +25,11 @@ public class XMLRPCSender implements Observer {
 
     public int port = 8000;
 
-    XMLRPCClient client;
+    XMLRPCClient client = new XMLRPCClient(new URL("http://10.0.0.15" + ":" + port));
 
-    public XMLRPCSender() {
+    public XMLRPCSender() throws MalformedURLException {
         try {
-            client = new XMLRPCClient(new URL("10.0.0.15" + ":" + port));
+            client = new XMLRPCClient(new URL("http://10.0.0.15" + ":" + port));
         } catch (Exception ex) {
 
         }
@@ -37,6 +37,7 @@ public class XMLRPCSender implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        Log.i("Update: ", "Update Called");
         send(((Scanner)o).getScan());
     }
 
@@ -56,11 +57,12 @@ public class XMLRPCSender implements Observer {
         try {
             client.call("scanalyze", scan);
         } catch (Exception ex) {
+            Log.i("Info: ", "Send Log: " + ex.getMessage());
 
     }
         Log.i("Info: ", "Scanning");
 
         return false;
 
-    }  //fail because we can't send things yet
+    }
 }
