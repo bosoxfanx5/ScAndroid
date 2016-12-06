@@ -66,6 +66,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private String barcodeValue;
 
     Scanner scanner = new Scanner();
+    XMLRPCSender sender = new XMLRPCSender();
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -146,6 +147,8 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
+        scanner.addObserver(sender);
+
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
