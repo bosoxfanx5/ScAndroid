@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Scanner extends Observable {
 
     Integer delay; //delay in ms
-    ArrayList<ArrayList<Scan>> scans;
+    ArrayList<ArrayList<Scan>> scans = new ArrayList<ArrayList<Scan>>();
 
     //observers managed by superclass
 
