@@ -42,8 +42,10 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import
 
 import java.io.IOException;
+import java.util.Observable;
 
 /**
  * Activity for the multi-tracker app.  This app detects faces and barcodes with the rear facing
@@ -145,10 +147,14 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
-                Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
+                try {
+                    Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
 //                this.barcodeValue = barcodeValue;
-                TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
-                bcTV.setText(barcodeValue);
+                    TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
+                    bcTV.setText(barcodeValue + "\n" + bcTV.getText());
+                } catch (Exception ex) {
+                    Log.e(ex.toString(), "Expected error: ");
+                }
 
             }
         });
