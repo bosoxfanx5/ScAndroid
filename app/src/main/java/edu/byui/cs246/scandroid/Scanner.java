@@ -36,7 +36,7 @@ public class Scanner extends Observable {
     public void insertScan(Scan scan) {
         ArrayList<Scan> temp = new ArrayList();
         temp.add(scan);
-        if (scans.isEmpty()) {
+        if (!scans.equals(null) && scans.isEmpty()) {
             scans.add(0, temp);
         }
         else {
