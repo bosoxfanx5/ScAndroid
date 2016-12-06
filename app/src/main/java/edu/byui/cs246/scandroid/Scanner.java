@@ -17,7 +17,7 @@ public class Scanner extends Observable {
 
     //observers managed by superclass
 
-    public void Scanner() {}
+    public void Scanner() { scans = new ArrayList<ArrayList<Scan>>(); }
 
     public Scan scan() { //produces a scan object - scan is a verb here
         if (!scans.isEmpty())
