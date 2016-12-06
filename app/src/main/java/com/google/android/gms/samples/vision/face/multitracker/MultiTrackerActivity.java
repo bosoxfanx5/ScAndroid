@@ -42,7 +42,8 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import
+
+import edu.byui.cs246.scandroid.*;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -64,6 +65,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private GraphicOverlay mGraphicOverlay;
     private String barcodeValue;
 
+    Scanner scanner = new Scanner();
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -152,6 +154,8 @@ public final class MultiTrackerActivity extends AppCompatActivity {
 //                this.barcodeValue = barcodeValue;
                     TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
                     bcTV.setText(barcodeValue + "\n" + bcTV.getText());
+                    Scan scan = new Scan(barcodeValue);
+                    scanner.insertScan(scan);
                 } catch (Exception ex) {
                     Log.e(ex.toString(), "Expected error: ");
                 }

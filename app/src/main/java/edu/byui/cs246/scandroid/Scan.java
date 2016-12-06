@@ -1,6 +1,9 @@
 package edu.byui.cs246.scandroid;
 
 import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by admin on 11/2/16.
@@ -8,9 +11,28 @@ import java.security.Timestamp;
 
 public class Scan {
 
-    String symbology;
-    String data;
-    Timestamp timestamp;
+    private String symbology;
+    private String data;
+    private String timestamp;
 
-    public void Scan() {} //constructor - scan is used here as a noun
+    public Scan() {setTimestamp();}
+
+    public Scan(String data) {
+        this.data = data;
+        setTimestamp();
+    } //constructor - scan is used here as a noun
+
+    public Scan(String data, String symbology) {
+        this.data = data;
+        this.symbology = symbology;
+        setTimestamp();
+    }
+
+    public String getData()      { return data; }
+    public String getSymbology() { return symbology; }
+    public String getTimestamp() { return timestamp; }
+
+    private void setTimestamp() {
+        this.timestamp = new SimpleDateFormat("yyyyMMdd.HHmmss").format(Calendar.getInstance().getTime());
+    }
 }

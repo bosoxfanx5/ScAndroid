@@ -1,5 +1,6 @@
 package edu.byui.cs246.scandroid;
 
+import java.lang.reflect.Array;
 import java.util.Observable;
 import java.util.ArrayList;
 
@@ -17,7 +18,11 @@ public class Scanner extends Observable {
     public void Scanner() {}
 
     public Scan scan() { //produces a scan object - scan is a verb here
-        return new Scan();
+        if (scans.size() > 1)
+            return scans.get(0).get(0);
+        else {
+            return null;
+        }
     }
 
     public void beginScanning() {};
@@ -25,8 +30,22 @@ public class Scanner extends Observable {
 
     //TODO: List functions - maybe we need another class for the list...
     public void insertSection() {};
-    public void    insertScan() {};
-    public void     clearList() {};
+
+    public void insertScan(Scan scan) {
+        ArrayList<Scan> temp = new ArrayList();
+        temp.add(scan);
+        if (scans.size() < 1) {
+            scans.add(0, temp);
+        }
+        else {
+            scans.get(0).add(0, scan);
+        }
+
+        notifyObservers();
+    }
+
+    public void     clearList() {}
+
     public Integer totalScanCount() { return scans.size();} //this needs loop through each sublist
     public Integer listScanCount()  { return scans.get(0).size();}
 
