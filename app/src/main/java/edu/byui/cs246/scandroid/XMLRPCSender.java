@@ -25,11 +25,11 @@ public class XMLRPCSender implements Observer {
 
     public int port = 8000;
 
-    XMLRPCClient client = new XMLRPCClient(new URL("http://10.0.0.15" + ":" + port));
+    XMLRPCClient client = new XMLRPCClient(new URL("http://127.0.0.1" + ":" + port + "/RPC2"));
 
     public XMLRPCSender() throws MalformedURLException {
         try {
-            client = new XMLRPCClient(new URL("http://10.0.0.15" + ":" + port));
+            client = new XMLRPCClient(new URL("http://10.0.0.15" + ":" + port + "/RPC2"));
         } catch (Exception ex) {
 
         }
@@ -54,8 +54,9 @@ public class XMLRPCSender implements Observer {
 
     public boolean send(Scan scan)
     {
+        Log.i("Info ", "scan.getData() = " + scan.getData());
         try {
-            client.call("scanalyze", scan);
+            client.call("scanalyze", scan.getData());
         } catch (Exception ex) {
             Log.i("Info: ", "Send Log: " + ex.getMessage());
 

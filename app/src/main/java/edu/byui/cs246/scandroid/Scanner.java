@@ -31,7 +31,7 @@ public class Scanner extends Observable {
     }
 
     public void beginScanning() {};
-    public Scan getScan() {return new Scan();}
+    public Scan getScan() {return scans.get(0).get(0);}
 
     //TODO: List functions - maybe we need another class for the list...
     public void insertSection() {};
@@ -46,7 +46,7 @@ public class Scanner extends Observable {
             scans.get(0).add(0, scan);
         }
 
-        Log.i("Info: ", "Inserting scan.");
+        Log.i("Info: ", "Inserting scan." + scans.get(0).get(0).getData());
         setChanged();
         notifyObservers();
     }

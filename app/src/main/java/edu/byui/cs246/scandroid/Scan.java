@@ -1,9 +1,7 @@
 package edu.byui.cs246.scandroid;
 
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by admin on 11/2/16.
@@ -11,9 +9,9 @@ import java.util.Date;
 
 public class Scan {
 
-    private String symbology;
-    private String data;
-    private String timestamp;
+    private String symbology = "";
+    private String data = "";
+    private String timestamp = "";
 
     public Scan() {setTimestamp();}
 
