@@ -48,6 +48,7 @@ import java.net.MalformedURLException;
 
 import edu.byui.cs246.scandroid.Scan;
 import edu.byui.cs246.scandroid.Scanner;
+import edu.byui.cs246.scandroid.SettingsActivity;
 import edu.byui.cs246.scandroid.XMLRPCSender;
 
 /**
@@ -92,6 +93,11 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+    }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     /**
