@@ -47,7 +47,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:text="Hello"
         app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintRight_toRightOf="@+id/preview"
         android:layout_marginEnd="16dp"
