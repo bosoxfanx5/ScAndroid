@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,119 +8,164 @@
     <!--tools:context="edu.byui.cs246.scandroid.MainActivity"-->
 
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/topLayout"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:keepScreenOn="true">
+    <Button
+        android:id="@+id/infoButton"
+        android:text="i"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <TextView android:text=""
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/txtContent"/>
+    <Button
+        android:id="@+id/allButton"
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        style="@style/Widget.AppCompat.Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toRightOf="@+id/infoButton" />
 
+    <Button
+        android:id="@+id/listButton"
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        style="@style/Widget.AppCompat.Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toRightOf="@+id/allButton" />
 
+    <Button
+        android:id="@+id/singleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        style="@style/Widget.AppCompat.Button"
+        app:layout_constraintLeft_toRightOf="@+id/listButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp" />
 
-      <com.google.android.gms.samples.vision.face.multitracker.ui.camera.CameraSourcePreview
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtContent"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2"
+        android:background="@android:color/white"
+        android:alpha=".8"
+        android:cursorVisible="false"
+        android:clickable="false"
+        android:editable="false"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:layout_weight="0.91"
+        android:textColor="@android:color/holo_red_dark"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/txtContent"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView"
+        android:background="@android:color/white"
+        android:alpha=".8"
+        android:cursorVisible="false"
+        android:clickable="false"
+        android:editable="false"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:layout_weight="0.91"
+        android:textColor="@android:color/holo_red_dark"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.gms.samples.vision.face.multitracker.ui.camera.CameraSourcePreview
         android:id="@+id/preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-          android:layout_centerInParent="true">
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp">
 
-      <com.google.android.gms.samples.vision.face.multitracker.ui.camera.GraphicOverlay
-          android:id="@+id/faceOverlay"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"/>
+        <com.google.android.gms.samples.vision.face.multitracker.ui.camera.GraphicOverlay
+            android:id="@+id/faceOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </com.google.android.gms.samples.vision.face.multitracker.ui.camera.CameraSourcePreview>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        android:translationX="12dp"
-        android:translationY="12dp">
+    <TextView
+        android:text=""
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/txtContent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="433dp"
-            android:layout_below="@+id/txtContent"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/barcodeTV"
-            android:background="@android:color/white"
-            android:alpha=".8"
-            android:cursorVisible="false"
-            android:clickable="false"
-            android:editable="false"
-            android:fontFamily="sans-serif"
-            android:textSize="24sp"
-            android:layout_weight="0.91"
-            android:textColor="@android:color/holo_red_dark" />
-    </LinearLayout>
-
-    <!--android:layout_width="match_parent"-->
-<!--android:layout_height="193dp"-->
-<!--android:orientation="vertical"-->
-<!--android:weightSum="1">-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/topLayout"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:keepScreenOn="true"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:translationX="12dp"
+            android:translationY="12dp">
 
-<!--<ImageView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/imgview" />-->
+        </LinearLayout>
 
-</RelativeLayout>
-
-<GridLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_gravity="bottom|start"
-android:layout_weight="1.11">
-
-
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|start"
-    android:layout_margin="16dp"
-    app:srcCompat="@android:drawable/ic_dialog_info"
-    app:backgroundTint="?attr/actionMenuTextColor"
-    android:onClick="activateSettings(MainActivity)"
-    />
-
-<Button
-    android:text="0"
-    android:layout_width="80px"
-    android:layout_height="80px"
-    android:id="@+id/allButton"
-    android:layout_gravity="center|start"
-    android:background="@android:drawable/editbox_dropdown_light_frame"
-    style="@style/Widget.AppCompat.Button" />
-
-<Button
-    android:text="0"
-    android:layout_width="80px"
-    android:layout_height="80px"
-    android:id="@+id/listButton"
-    android:layout_gravity="center|start"
-    android:background="@android:drawable/editbox_dropdown_light_frame"
-    style="@style/Widget.AppCompat.Button" />
-
-<Button
-    android:layout_width="80px"
-    android:layout_height="80px"
-    android:text="0"
-    android:id="@+id/singleButton"
-    android:layout_gravity="center|start"
-    android:background="@android:drawable/editbox_dropdown_light_frame"
-    style="@style/Widget.AppCompat.Button" />
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="193dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:weightSum="1">-->
 
 
-</GridLayout>
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/imgview" />-->
 
-    </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_below="@+id/txtContent"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/barcodeTV"
+        android:background="@android:color/white"
+        android:alpha=".8"
+        android:cursorVisible="false"
+        android:clickable="false"
+        android:editable="false"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:layout_weight="0.91"
+        android:textColor="@android:color/holo_red_dark"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</android.support.constraint.ConstraintLayout>
