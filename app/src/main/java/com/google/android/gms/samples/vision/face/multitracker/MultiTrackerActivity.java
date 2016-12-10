@@ -31,6 +31,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -164,10 +165,10 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         //DAN AND BROOKS - register the sender as an observer with of the scanner
         scanner.addObserver(sender);
 
+        //DAN AND BROOKS - callback, double indented for style
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
-
                 //DAN AND BROOKS - create a SettingsActivity to retrieve it's settings (inefficient)
                 SettingsActivity sa = new SettingsActivity();
                 try {
@@ -183,19 +184,24 @@ public final class MultiTrackerActivity extends AppCompatActivity {
                 //DAN AND BROOKS - save the scan value to the scanner object
                 scanner.insertScan(scan);
                 try {
-                    Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
+                    //write barcode to screen
                     TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
+                    Button allB    = (Button)findViewById(R.id.allButton);
+                    Button listB   = (Button)findViewById(R.id.listButton);
+                    Button singleB = (Button)findViewById(R.id.singleButton);
+
+                    allB.setText(scanner.totalScanCount());
+                    listB.setText(scanner.listScanCount());
+                    singleB.setText("1");
+
                     bcTV.setText(barcodeValue + "\n" + bcTV.getText());
                 } catch (Exception ex) {
                     Log.e(ex.getMessage(), "Expected error: ");
                 }
-
             }
         });
-//        MultiProcessor<Barcode> barcodeMultiProcessor = new MultiProcessor.Builder<>(barcodeFactory).build();
-//        barcodeDetector.setProcessor(barcodeMultiProcessor);
-        barcodeDetector.setProcessor(
-                new MultiProcessor.Builder<>(barcodeFactory).build());
+
+        barcodeDetector.setProcessor(new MultiProcessor.Builder<>(barcodeFactory).build());
 
         // A multi-detector groups the two detectors together as one detector.  All images received
         // by this detector from the camera will be sent to each of the underlying detectors, which
@@ -203,7 +209,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         // are then sent to associated tracker instances which maintain per-item graphics on the
         // screen.
         MultiDetector multiDetector = new MultiDetector.Builder()
-                //.add(faceDetector)
+                //.add(faceDetector) //we don't need the faces portion of the API or example
                 .add(barcodeDetector)
                 .build();
 
