@@ -69,7 +69,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private String barcodeValue;
 
     Scanner scanner = new Scanner();
-    XMLRPCSender sender = new XMLRPCSender();
+    XMLRPCSender sender = new XMLRPCSender("127.0.0.1", "8000");
 
     public MultiTrackerActivity() throws MalformedURLException {
     }
@@ -163,7 +163,17 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
+                SettingsActivity sa = new SettingsActivity();
+                try {
+                    sender = new XMLRPCSender(sa.retrieve("ip"), sa.retrieve("port"));
+                } catch (Exception ex) {
+                    Log.e("Error:", "Failed to Create New XMLRPCSender - " + ex.getMessage());
+                }
+
+                //create new scan object to hold the barcdoe value
                 Scan scan = new Scan(barcodeValue);
+
+                //save the scan value to the scanner object
                 scanner.insertScan(scan);
                 try {
                     Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
