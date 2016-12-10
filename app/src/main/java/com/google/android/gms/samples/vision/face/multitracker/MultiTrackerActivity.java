@@ -68,9 +68,11 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private GraphicOverlay mGraphicOverlay;
     private String barcodeValue;
 
+    //DAN AND BROOKS - add scanner and sender classes
     Scanner scanner = new Scanner();
     XMLRPCSender sender = new XMLRPCSender("127.0.0.1", "8000");
 
+    //DAN AND BROOKS - add throw so we can create the sender
     public MultiTrackerActivity() throws MalformedURLException {
     }
 
@@ -95,6 +97,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         }
     }
 
+    //DAN AND BROOKS - create intent and open activity
     public void openSettings(View view) {
         Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
         startActivity(intent);
@@ -133,7 +136,6 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
      * to other detection examples to enable the barcode detector to detect small barcodes
@@ -158,26 +160,30 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
+
+        //DAN AND BROOKS - register the sender as an observer with of the scanner
         scanner.addObserver(sender);
 
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
+
+                //DAN AND BROOKS - create a SettingsActivity to retrieve it's settings (inefficient)
                 SettingsActivity sa = new SettingsActivity();
                 try {
+                    //DAN AND BROOKS - recreate sender using stored ip and port
                     sender = new XMLRPCSender(sa.retrieve("ip"), sa.retrieve("port"));
                 } catch (Exception ex) {
                     Log.e("Error:", "Failed to Create New XMLRPCSender - " + ex.getMessage());
                 }
 
-                //create new scan object to hold the barcdoe value
+                //DAN AND BROOKS - create new scan object to hold the barcdoe value
                 Scan scan = new Scan(barcodeValue);
 
-                //save the scan value to the scanner object
+                //DAN AND BROOKS - save the scan value to the scanner object
                 scanner.insertScan(scan);
                 try {
                     Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
-//                this.barcodeValue = barcodeValue;
                     TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
                     bcTV.setText(barcodeValue + "\n" + bcTV.getText());
                 } catch (Exception ex) {

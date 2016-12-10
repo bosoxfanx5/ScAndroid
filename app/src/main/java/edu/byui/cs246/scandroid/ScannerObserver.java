@@ -7,6 +7,7 @@ import java.util.Observer;
  * Created by admin on 11/2/16.
  */
 
+//for implmentation of the observer model
 public class ScannerObserver implements Observer {
 
     Scan scan;         //this is what we had in the UML, but...

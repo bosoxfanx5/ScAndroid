@@ -38,29 +38,10 @@ public class XMLRPCSender implements Observer {
 
     XMLRPCClient client = new XMLRPCClient(new URL("http://127.0.0.1" + ":" + port + "/RPC2"));
 
-    public XMLRPCSender(Context context) throws MalformedURLException {
-        //Retrieve settings from Shared Preferences
-//        try {
-//            SharedPreferences settings = context.getSharedPreferences(SERVER_SETTINGS, 0);
-//            String ip = settings.getString("IP", "127.0.0.1"); //ip   - default to 127.0.0.1
-//            String port = settings.getString("Port", "8000");      //port - default to 8000
-//
-//            Log.i("Info:", "IP: " + ip + " and Port: " + port);
-//
-//            try {
-//                //create client using IP address and port numnber
-//                client = new XMLRPCClient(new URL("http://" + ip + ":" + port + "/RPC2"));
-//            } catch (Exception ex1) {
-//                Log.e("Error:", "Could not create client: " + ex1.getMessage());
-//                exit(0);
-//            }
-//
-//        } catch (Exception ex2) {
-//            Log.e("Error:", "Shared Prferences Not Avialable: " + ex2.getMessage());
-//            exit(0);
-//        }
-    }
+    //creates default sender
+    public XMLRPCSender(Context context) throws MalformedURLException { }
 
+    //creates a new sender using ip and port
     public XMLRPCSender(String ip, String port) throws MalformedURLException {
             Log.i("Info:", "IP: " + ip + " and Port: " + port);
 
@@ -87,12 +68,13 @@ public class XMLRPCSender implements Observer {
             try (Socket socket = new Socket()) {
                 socket.connect(new InetSocketAddress(serverIP.toString(), port), 1000);
             }
-            return true;
+            return true; //server is reachable
         } catch (IOException ex) {
-            return false;
+            return false; //server is not reachable
         }
     }
 
+    //sends scanned barcode to the server
     public boolean send(Scan scan) {
         //log the scan data
         Log.i("Info: ", "scan.getData() = " + scan.getData());
@@ -102,8 +84,8 @@ public class XMLRPCSender implements Observer {
         } catch (Exception ex) {
             //log any exceptions that occur
             Log.i("Exception: ", "send.XMLRPCSender - " + ex.getMessage());
-            return false;
+            return false; //bad send
     }
-        return true;
+        return true; //good send
     }
 }
