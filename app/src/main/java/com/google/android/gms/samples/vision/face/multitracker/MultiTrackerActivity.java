@@ -31,6 +31,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +70,7 @@ public final class MultiTrackerActivity extends AppCompatActivity {
     private String barcodeValue;
 
     Scanner scanner = new Scanner();
-    XMLRPCSender sender = new XMLRPCSender();
+    XMLRPCSender sender = XMLRPCSender.getInstance();
 
     public MultiTrackerActivity() throws MalformedURLException {
     }
@@ -93,12 +94,18 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+
+        if (sender.ip == "127.0.0.1") {
+            Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+
     }
 
-    public void openSettings(View view) {
-        Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
-        startActivity(intent);
-    }
+//    public void openSettings(View view) {
+//        Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
+//        startActivity(intent);
+//    }
 
     /**
      * Handles the requesting of the camera permission.  This includes
@@ -160,6 +167,12 @@ public final class MultiTrackerActivity extends AppCompatActivity {
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
         scanner.addObserver(sender);
 
+
+//        Log.i("sa.IP", "value:" + sa.retrieve("IP"));
+//        Log.i("sa.Port", "value:" + sa.retrieve("Port"));
+        sender = XMLRPCSender.getInstance();
+        Log.i("sender", "IP" + sender.ip);
+
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, new GraphicTracker.Callback() {
             @Override
             public void onFound(String barcodeValue) {
@@ -167,9 +180,18 @@ public final class MultiTrackerActivity extends AppCompatActivity {
                 scanner.insertScan(scan);
                 try {
                     Log.d(TAG, "Barcode in Multitracker = " + barcodeValue);
-//                this.barcodeValue = barcodeValue;
+                    Log.i("Sender IP", "Value:" + sender.ip);
                     TextView bcTV = (TextView) findViewById(R.id.barcodeTV);
                     bcTV.setText(barcodeValue + "\n" + bcTV.getText());
+                    Button allB    = (Button)findViewById(R.id.allButton);
+                    Button listB   = (Button)findViewById(R.id.listButton);
+                    Button singleB = (Button)findViewById(R.id.singleButton);
+
+                    //RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.main);
+                    //remoteViews.setTextViewText(R.id.allButton, scanner.totalScanCount().toString());
+                    allB.setText(scanner.totalScanCount());
+                    listB.setText(scanner.listScanCount());
+                    singleB.setText("1");
                 } catch (Exception ex) {
                     Log.e(ex.getMessage(), "Expected error: ");
                 }

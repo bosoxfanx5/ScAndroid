@@ -11,9 +11,12 @@ import android.widget.EditText;
 import com.google.android.gms.samples.vision.face.multitracker.MultiTrackerActivity;
 import com.google.android.gms.samples.vision.face.multitracker.R;
 
+import static java.lang.System.exit;
+
 public class SettingsActivity extends AppCompatActivity {
 
     public String SERVER_SETTINGS = "ServerSettings";
+    //public XMLRPCSender updatedVal = new XMLRPCSender();
 
 
     @Override
@@ -21,16 +24,28 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        SharedPreferences settings = getSharedPreferences(SERVER_SETTINGS, 0);
+        try {
+            //open shared preference file
+            SharedPreferences settings = getSharedPreferences(SERVER_SETTINGS, 0);
 
-        EditText ipET = (EditText) findViewById(R.id.ipET);
-        String ip = settings.getString("IP", "");
-        ipET.setText(ip);
+            //ip
+            EditText ipET = (EditText) findViewById(R.id.ipET);
+            String ip = settings.getString("IP", "");
+            ipET.setText(ip);
 
+            //port
+            EditText portET = (EditText) findViewById(R.id.portET);
+            String port = settings.getString("Port", "8000");
+            portET.setText(port);
 
-        EditText portET = (EditText) findViewById(R.id.portET);
-        String port = settings.getString("Port", "8000");
-        portET.setText(port);
+            XMLRPCSender updatedVal = XMLRPCSender.getInstance();
+            updatedVal.ip = ip;
+            updatedVal.port = port;
+
+        } catch (Exception ex2) {
+            Log.e("Error:", "Shared Prferences Not Avialable: " + ex2.getMessage());
+            exit(0);
+        }
     }
 
     public void closeSettings(View view) {
@@ -49,8 +64,21 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putString("IP", ip);
         editor.putString("Port", port);
 
+
         Log.i("Info", "Info log on SeverSettings");
 
         editor.commit();
+
+        XMLRPCSender instance = XMLRPCSender.getInstance();
+//        Log.i("InstanceBefore", "IP:"+ instance.ip + "Port:"  + instance.port);
+        instance.ip = ip;
+        instance.port = port;
+//        XMLRPCSender instance2 = XMLRPCSender.getInstance();
+//        Log.i("InstanceAfter", "IP:"+ instance2.ip + "Port:"  + instance2.port);
+    }
+
+    public String retrieve(String variable) {
+        SharedPreferences settings = getSharedPreferences(SERVER_SETTINGS, 0);
+        return settings.getString(variable, "");
     }
 }
