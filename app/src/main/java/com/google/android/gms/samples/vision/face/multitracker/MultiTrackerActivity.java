@@ -102,10 +102,10 @@ public final class MultiTrackerActivity extends AppCompatActivity {
 
     }
 
-//    public void openSettings(View view) {
-//        Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
-//        startActivity(intent);
-//    }
+    public void openSettings(View view) {
+        Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * Handles the requesting of the camera permission.  This includes
