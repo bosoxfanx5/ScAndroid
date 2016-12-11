@@ -8,7 +8,7 @@ import java.util.Observer;
  * Created by admin on 11/2/16.
  */
 
-
+//unused stub
 public class Screen extends Observable implements Observer { //TODO: OptionsObserver, ScannerObserver {
 
     //JFormattedTextField serverIPTF; //need to import swing
