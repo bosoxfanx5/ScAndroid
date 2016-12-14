@@ -95,10 +95,10 @@ public final class MultiTrackerActivity extends AppCompatActivity {
             requestCameraPermission();
         }
 
-//        if (sender.ip == "127.0.0.1") {
-//            Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
-//            startActivity(intent);
-//        }
+        if (sender.ip == "127.0.0.1") {
+            Intent intent = new Intent(MultiTrackerActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
 
     }
 
